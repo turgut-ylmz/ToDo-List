@@ -1,8 +1,12 @@
 const container = document.querySelector(".container");
 const input = document.querySelector(".input-value");
 const listGroup = document.querySelector(".list-group");
+
 container.addEventListener("click", (e) => {
-  const inputValue = input.value;
+  let inputValue = input.value.trim();
+  if(inputValue==""){
+    return
+    }else{
   if (e.target.classList.contains("btn-warning")) {
     listGroup.innerHTML += `
       <li class="list-group-item d-flex flex-direction-row">
@@ -16,7 +20,10 @@ container.addEventListener("click", (e) => {
       <span class="badge rounded-pill text-bg-danger">X</span>
     </li>
       `;
+    
+
   } else if (e.target.classList.contains("badge")) {
+    console.log(e.target)
     e.target.parentElement.remove();
   } else if (e.target.classList.contains("form-check-input")) {
     if (!e.target.nextElementSibling.innerHTML.includes("<del>")) {
@@ -27,4 +34,7 @@ container.addEventListener("click", (e) => {
   } else if (e.target.classList.contains("btn-danger")) {
     listGroup.innerHTML = "";
   }
+  
+}
+
 });
